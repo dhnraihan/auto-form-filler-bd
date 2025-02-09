@@ -92,8 +92,14 @@ function fillForms() {
       field.value = `${randomName}${Math.floor(Math.random() * 1000)}@gmail.com`;
     } else if (field.type === "number") {
       field.value = Math.floor(Math.random() * 100);
-    } else if (field.type === "text") {
-      field.value = getRandomString(10);
+    } else if (field.type === "text" && field.name.toLowerCase().includes("address")) {
+      field.value = getRandomAddress();
+    } else if (field.type === "text" && field.name.toLowerCase().includes("city")) {
+      field.value = getRandomCity();
+    } else if (field.type === "text" && field.name.toLowerCase().includes("district")) {
+      field.value = getRandomDistrict();
+    } else if (field.type === "text" && field.name.toLowerCase().includes("state")) {
+      field.value = getRandomDivision();
     } else if (field.type === "date") {
       field.value = getRandomDate();
     } else if (field.type === "radio" || field.type === "checkbox") {
@@ -104,7 +110,6 @@ function fillForms() {
     }
   });
 }
-
 // Call the function to fill forms
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "fillForm") {
