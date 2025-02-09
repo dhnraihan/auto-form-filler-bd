@@ -1,3 +1,5 @@
+
+// Function to get a random Bangladeshi name
 function getRandomName() {
   const names = ["Abdullah Rahman", "Ayesha Khan", "Arafat Hossain", "Asif Ahmed", "Akib Hasan", "Anika Islam", "Arman Ali", "Adnan Chowdhury", "Afnan Siddique", "Aiman Haque",
     "Bilal Karim", "Binita Das", "Barkat Ullah", "Brishti Roy", "Basir Malik", "Bilkis Begum", "Bakhtiar Khan", "Badrul Islam", "Bahar Ahmed", "Billal Hossain",
@@ -28,12 +30,20 @@ function getRandomName() {
   return names[Math.floor(Math.random() * names.length)];
 }
 
+// Function to generate email from name
+function generateEmail(name) {
+  const formattedName = name.toLowerCase().replace(/\s+/g, '.'); // name formate to replace space to .
+  return `${formattedName}${Math.floor(Math.random() * 1000)}@gmail.com`; // ramdom number to email
+}
+
+// Function to get a random Bangladeshi phone number
 function getRandomPhoneNumber() {
   const operatorCodes = ["13", "14", "15", "16", "17", "18", "19"];
   const randomOperator = operatorCodes[Math.floor(Math.random() * operatorCodes.length)];
   const randomNumber = Math.floor(10000000 + Math.random() * 90000000);
   return `+880${randomOperator}${randomNumber}`;
 }
+
 // Function to get a random Bangladeshi address
 function getRandomAddress() {
   const addresses = [
@@ -53,25 +63,29 @@ function getRandomCity() {
 function getRandomDistrict() {
   const districts = [
     "Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barisal", "Rangpur", "Mymensingh",
-    "Comilla", "Noakhali", "Jessore", "Bogra", "Dinajpur", "Faridpur", "Tangail"
+    "Comilla", "Noakhali", "Jessore", "Bogra", "Dinajpur", "Faridpur", "Tangail", "Natore", "Meherpur", "Nawabganj", "Pabna", "Gazipur",
+    "Kishoreganj", "Lalmonirhat", "Nilphamari", "Moulvibazar", "Satkhira", "Jhenaidah", "Brahmanbaria", "Narail", "Gaibandha", "Kurigram",
   ];
   return districts[Math.floor(Math.random() * districts.length)];
 }
 
 // Function to get a random Bangladeshi division (state)
 function getRandomDivision() {
-  const divisions = ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barisal", "Rangpur", "Mymensingh"];
+  const divisions = ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barisal", "Rangpur", "Mymensingh", "Gazipur", "Narayanganj"];
   return divisions[Math.floor(Math.random() * divisions.length)];
 }
 
+// Function to get a random Bangladeshi pincode
 function getRandomPincode() {
   return `${Math.floor(10000 + Math.random() * 90000)}`;
 }
 
+// Function to generate a random string
 function getRandomString(length) {
   return Math.random().toString(36).substring(2, length + 2);
 }
 
+// Function to generate a random date
 function getRandomDate() {
   let year = Math.floor(Math.random() * 20) + 2000;
   let month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
@@ -79,17 +93,21 @@ function getRandomDate() {
   return `${year}-${month}-${day}`;
 }
 
+// Function to fill forms
 function fillForms() {
+  const randomName = getRandomName(); // generate a random name
+  const randomEmail = generateEmail(randomName); // name to email
+
   document.querySelectorAll("input, textarea, select").forEach((field) => {
     if (field.type === "text" && field.name.toLowerCase().includes("name")) {
-      field.value = getRandomName();
+      field.value = randomName;
     } else if (field.type === "tel" || field.name.toLowerCase().includes("phone")) {
       field.value = getRandomPhoneNumber();
     } else if (field.name.toLowerCase().includes("pincode") || field.name.toLowerCase().includes("zip")) {
       field.value = getRandomPincode();
     } else if (field.type === "email") {
       const randomName = getRandomName().toLowerCase().replace(/\s+/g, '.');
-      field.value = `${randomName}${Math.floor(Math.random() * 1000)}@gmail.com`;
+      field.value = randomEmail;
     } else if (field.type === "number") {
       field.value = Math.floor(Math.random() * 100);
     } else if (field.type === "text" && field.name.toLowerCase().includes("address")) {
@@ -101,6 +119,9 @@ function fillForms() {
     } else if (field.type === "text" && field.name.toLowerCase().includes("state")) {
       field.value = getRandomDivision();
     } else if (field.type === "date") {
+    } else if (field.type === "text" && field.name.toLowerCase().includes("country")) {
+      field.value = "Bangladesh";
+    } else if (field.type === "date") {
       field.value = getRandomDate();
     } else if (field.type === "radio" || field.type === "checkbox") {
       if (Math.random() > 0.5) field.checked = true;
@@ -110,6 +131,7 @@ function fillForms() {
     }
   });
 }
+
 // Call the function to fill forms
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "fillForm") {
