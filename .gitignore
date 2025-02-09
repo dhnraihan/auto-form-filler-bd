@@ -1,5 +1,0 @@
-node_*
-.gitignore
-package.json
-package-lock.json
-input.css
