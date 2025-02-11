@@ -3,32 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auto Form Filler</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- <link rel="stylesheet" href="tailwind.css"> -->
+  <title>Auto Form Filler bd</title>
   <style>
-    /* Custom styles (if needed) */
-    .custom-shadow {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    /* Basic Reset */
+    body, h1, button {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      width: 250px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .description {
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      margin-bottom: 20px;
+    }
+    .button {
+      background-color: #3b82f6;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #2563eb;
+    }
+    .button:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
     }
   </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-  <div class="bg-white rounded-lg custom-shadow p-6 w-80 text-center">
+<body>
+  <!-- Container -->
+  <div class="container">
     <!-- Title -->
-    <h1 class="text-2xl font-bold text-gray-800 mb-4">Auto Form Filler by Raihan.</h1>
+    <h1 class="title">Auto Form Filler bd</h1>
     <!-- Description -->
-    <p class="text-gray-600 mb-6">
-      Click the button below to automatically fill the form with random data.
+    <p class="description">
+      Click the button below to automatically fill the form with random created by Raihan.
     </p>
     <!-- Button -->
-    <button
-      id="fillForm"
-      class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-    >
-      Fill Form
-    </button>
+    <button id="fillForm" class="button">Fill Form</button>
   </div>
   <!-- Script -->
   <script src="popup.js" defer></script>

@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Auto fill",
+  "name": "Auto Form filler bd",
   "version": "1.1",
-  "description": "Fills forms with fake data on button click",
+  "description": "Automatically fills forms with random or predefined data.",
   "permissions": ["activeTab", "storage", "tabs"],
   "background": {
     "scripts": ["background.js"],
